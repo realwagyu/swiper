@@ -12,6 +12,15 @@ export default function onTouchMove(event) {
   let e = event;
   if (e.originalEvent) e = e.originalEvent;
 
+  if (
+    window.TouchEvent &&
+    e instanceof TouchEvent &&
+    e.touches.length >= 2
+  )
+  {
+    return null;
+  }
+
   if (e.type === 'pointermove') {
     if (data.touchId !== null) return; // return from pointer if we use touch
     const id = e.pointerId;
